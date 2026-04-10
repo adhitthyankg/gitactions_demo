@@ -2,12 +2,20 @@ name: Basic Security Pipeline
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main", "master" ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Run Semgrep Scan
+      uses: returntocorp/semgrep-action@v1
+      with:
+        config: "auto"
+
     - name: Print Message
       run: echo "Pipeline is running..."

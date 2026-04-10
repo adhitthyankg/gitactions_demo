@@ -16,6 +16,8 @@ jobs:
       uses: returntocorp/semgrep-action@v1
       with:
         config: "auto"
+      env:
+        SEMGREP_FAIL_ON: "ERROR"
 
     - name: Print Message
       run: echo "Pipeline is running..."

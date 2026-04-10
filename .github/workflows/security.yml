@@ -21,3 +21,14 @@ jobs:
 
     - name: Print Message
       run: echo "Pipeline is running..."
+
+    - name: Build Docker Image
+      run: docker build -t myapp .
+
+    - name: Run Trivy Scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: "myapp"
+        format: "table"
+        exit-code: "0"
+        severity: "HIGH,CRITICAL"

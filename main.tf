@@ -1,0 +1,14 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_security_group" "bad_sg" {
+  name = "bad_security_group"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["198.16.7.1/24"]   # ❌ OPEN TO WORLD
+  }
+}
